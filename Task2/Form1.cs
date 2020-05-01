@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Forms.DataVisualization.Charting;
 
 namespace Task2
 {
@@ -22,6 +23,7 @@ namespace Task2
             chart1.ChartAreas[0].CursorX.Interval = 0.01;
             chart1.ChartAreas[0].CursorY.Interval = 0.01;
             chart1.ChartAreas[0].AxisX.ScrollBar.Axis.ScaleView.SmallScrollSize = 0.01;
+            chart1.ChartAreas[0].AxisY.ScrollBar.Axis.ScaleView.SmallScrollSize = 0.01;
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -35,13 +37,21 @@ namespace Task2
 
             while (t < tmax)
             {
+                if (!F(t, x))
+                    break;
+
                 chart1.Series[0].Points.AddXY(t, x);
                 x = Function(x, A);
                 t += 0.01;
             }
-
         }
 
         static double Function(double x, double A) => A * (x - x * x * x);
+        static bool F(double x, double y) //Придумать название
+        {
+            bool ifX = x > -100000000000 && x < 100000000000;
+            bool ifY = y > -100000000000 && y < 100000000000;
+            return ifX && ifY;
+        }
     }
 }

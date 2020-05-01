@@ -18,6 +18,7 @@ namespace Task1
             chart1.ChartAreas[0].CursorX.Interval = 0.01;
             chart1.ChartAreas[0].CursorY.Interval = 0.01;
             chart1.ChartAreas[0].AxisX.ScrollBar.Axis.ScaleView.SmallScrollSize = 0.01;
+            chart1.ChartAreas[0].AxisY.ScrollBar.Axis.ScaleView.SmallScrollSize = 0.01;
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -32,6 +33,7 @@ namespace Task1
             double A, k, h = 0.01;
             double t = 0, tmax;
             double x = 1, y = 1;
+            double N = 100000000000;
             A = double.Parse(textBox1.Text, System.Globalization.CultureInfo.InvariantCulture);
             k = double.Parse(textBox2.Text, System.Globalization.CultureInfo.InvariantCulture);
             tmax = double.Parse(textBox3.Text, System.Globalization.CultureInfo.InvariantCulture);
@@ -39,13 +41,13 @@ namespace Task1
             Metods metod = new Metods(A, k, h);
 
 
-            for (int i = 0; i <= 4; i++)
+            for (int i = 0; i < 2; i++)
             {
                 x = 1 + (double)i / 100; y = 1 + (double)i / 100; t = 0;
 
                 while (t < tmax)
                 {
-                    if (!(x < 90000000000 && y < 90000000000 && x > -90000000000 && y > -90000000000))
+                    if (!(x < N && y < N && x > -N && y > -N))
                     {
                         textBox4.BackColor = Color.Red;
                         break;
