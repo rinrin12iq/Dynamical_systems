@@ -24,7 +24,7 @@ namespace Task1
 
         public void RungeKutta(ref double x, ref double y)
         {
-            double k1, k2, k3, k4, q1, q2, q3, q4, j1, j2, j3, j4;
+            double k1, k2, k3, k4, q1, q2, q3, q4;
 
             k1 = h * f1(y);
             q1 = h * f2(x, y);

@@ -32,6 +32,9 @@
             System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series5 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.button1 = new System.Windows.Forms.Button();
             this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.textBox2 = new System.Windows.Forms.TextBox();
@@ -46,9 +49,9 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(784, 506);
+            this.button1.Location = new System.Drawing.Point(1067, 506);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(308, 106);
+            this.button1.Size = new System.Drawing.Size(118, 106);
             this.button1.TabIndex = 0;
             this.button1.Text = "Построить";
             this.button1.UseVisualStyleBackColor = true;
@@ -72,15 +75,33 @@
             series2.Color = System.Drawing.Color.Red;
             series2.Legend = "Legend1";
             series2.Name = "Series2";
+            series3.ChartArea = "ChartArea1";
+            series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+            series3.Color = System.Drawing.Color.Blue;
+            series3.Legend = "Legend1";
+            series3.Name = "Series3";
+            series4.ChartArea = "ChartArea1";
+            series4.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+            series4.Color = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            series4.Legend = "Legend1";
+            series4.Name = "Series4";
+            series5.ChartArea = "ChartArea1";
+            series5.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+            series5.Color = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            series5.Legend = "Legend1";
+            series5.Name = "Series5";
             this.chart1.Series.Add(series1);
             this.chart1.Series.Add(series2);
-            this.chart1.Size = new System.Drawing.Size(700, 600);
+            this.chart1.Series.Add(series3);
+            this.chart1.Series.Add(series4);
+            this.chart1.Series.Add(series5);
+            this.chart1.Size = new System.Drawing.Size(1049, 624);
             this.chart1.TabIndex = 1;
             this.chart1.Text = "chart1";
             // 
             // textBox2
             // 
-            this.textBox2.Location = new System.Drawing.Point(874, 478);
+            this.textBox2.Location = new System.Drawing.Point(1067, 433);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(118, 22);
             this.textBox2.TabIndex = 3;
@@ -89,7 +110,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(781, 458);
+            this.label1.Location = new System.Drawing.Point(1119, 358);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(17, 17);
             this.label1.TabIndex = 4;
@@ -98,7 +119,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(926, 458);
+            this.label2.Location = new System.Drawing.Point(1119, 413);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(15, 17);
             this.label2.TabIndex = 5;
@@ -106,7 +127,7 @@
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(729, 478);
+            this.textBox1.Location = new System.Drawing.Point(1067, 378);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(118, 22);
             this.textBox1.TabIndex = 2;
@@ -114,7 +135,7 @@
             // 
             // textBox3
             // 
-            this.textBox3.Location = new System.Drawing.Point(1025, 478);
+            this.textBox3.Location = new System.Drawing.Point(1067, 478);
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(118, 22);
             this.textBox3.TabIndex = 6;
@@ -123,7 +144,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(1065, 458);
+            this.label3.Location = new System.Drawing.Point(1103, 458);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(45, 17);
             this.label3.TabIndex = 7;
@@ -131,7 +152,7 @@
             // 
             // textBox4
             // 
-            this.textBox4.Location = new System.Drawing.Point(784, 74);
+            this.textBox4.Location = new System.Drawing.Point(1067, 28);
             this.textBox4.Name = "textBox4";
             this.textBox4.Size = new System.Drawing.Size(118, 22);
             this.textBox4.TabIndex = 8;
