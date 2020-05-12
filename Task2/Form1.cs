@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
 
@@ -16,33 +9,60 @@ namespace Task2
         public Form1()
         {
             InitializeComponent();
-            chart1.ChartAreas[0].CursorX.IsUserEnabled = true;
-            chart1.ChartAreas[0].CursorX.IsUserSelectionEnabled = true;
-            chart1.ChartAreas[0].CursorY.IsUserEnabled = true;
-            chart1.ChartAreas[0].CursorY.IsUserSelectionEnabled = true;
-            chart1.ChartAreas[0].CursorX.Interval = 0.01;
-            chart1.ChartAreas[0].CursorY.Interval = 0.01;
-            chart1.ChartAreas[0].AxisX.ScrollBar.Axis.ScaleView.SmallScrollSize = 0.01;
-            chart1.ChartAreas[0].AxisY.ScrollBar.Axis.ScaleView.SmallScrollSize = 0.01;
+            chartSettings(chart1);
+            chartSettings(chart2);
         }
-
+        
+        double x0, A, Amax, t, tmax;
+        
         private void button1_Click(object sender, EventArgs e)
         {
-            chart1.Series[0].Points.Clear();
-            
-            double x, A, t = 0, tmax;
-            x = double.Parse(textBox1.Text, System.Globalization.CultureInfo.InvariantCulture);
+            double x;
+            chart1.Series[0].Points.Clear();  
             A = double.Parse(textBox2.Text, System.Globalization.CultureInfo.InvariantCulture);
-            tmax = double.Parse(textBox3.Text, System.Globalization.CultureInfo.InvariantCulture);
+            Amax = double.Parse(textBox3.Text, System.Globalization.CultureInfo.InvariantCulture);
+            x0 = double.Parse(textBox1.Text, System.Globalization.CultureInfo.InvariantCulture);
 
-            while (t < tmax)
+
+            while (A < Amax)
             {
-                if (!F(t, x))
-                    break;
+                t = 0;
+                x = x0;
+                while (t < 25)
+                {
+                    if (!F(A, x))
+                        break;
 
-                chart1.Series[0].Points.AddXY(t, x);
-                x = Function(x, A);
-                t += 0.01;
+                    if (t > 24)
+                        chart1.Series[0].Points.AddXY(A, x);
+                    
+                    x = Function(x, A);
+
+                    t += 0.01;
+                }
+                A += 0.01;
+            }
+        }
+
+
+        private void chart1_MouseClick(object sender, MouseEventArgs e)
+        {
+            chart2.Series[0].Points.Clear();
+            double xn, x = x0;
+            var res = chart1.HitTest(e.X, e.Y);
+            if (res.Series != null) {
+                A = res.Series.Points[res.PointIndex].XValue;
+                t = 0;
+                tmax = double.Parse(textBox4.Text, System.Globalization.CultureInfo.InvariantCulture);
+
+                while (t < tmax)
+                {
+                    xn = Function(x, A);
+                    chart2.Series[0].Points.AddXY(x, xn);
+                    x = xn;
+                    chart2.Series[0].Points.AddXY(x, xn);
+                    t += 0.01;
+                } 
             }
         }
 
@@ -52,6 +72,18 @@ namespace Task2
             bool ifX = x > -100000000000 && x < 100000000000;
             bool ifY = y > -100000000000 && y < 100000000000;
             return ifX && ifY;
+        }
+
+        public void chartSettings(Chart chart1)
+        {
+            chart1.ChartAreas[0].CursorX.IsUserEnabled = true;
+            chart1.ChartAreas[0].CursorX.IsUserSelectionEnabled = true;
+            chart1.ChartAreas[0].CursorY.IsUserEnabled = true;
+            chart1.ChartAreas[0].CursorY.IsUserSelectionEnabled = true;
+            chart1.ChartAreas[0].CursorX.Interval = 0.01;
+            chart1.ChartAreas[0].CursorY.Interval = 0.01;
+            chart1.ChartAreas[0].AxisX.ScrollBar.Axis.ScaleView.SmallScrollSize = 0.01;
+            chart1.ChartAreas[0].AxisY.ScrollBar.Axis.ScaleView.SmallScrollSize = 0.01;
         }
     }
 }

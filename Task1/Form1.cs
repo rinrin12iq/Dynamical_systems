@@ -14,7 +14,6 @@ namespace Task1
             chart1.ChartAreas[0].CursorX.IsUserSelectionEnabled = true;
             chart1.ChartAreas[0].CursorY.IsUserEnabled = true;
             chart1.ChartAreas[0].CursorY.IsUserSelectionEnabled = true;
-            //chart1.ChartAreas[0].AxisY.ScaleView.Zoomable = true; //?
             chart1.ChartAreas[0].CursorX.Interval = 0.01;
             chart1.ChartAreas[0].CursorY.Interval = 0.01;
             chart1.ChartAreas[0].AxisX.ScrollBar.Axis.ScaleView.SmallScrollSize = 0.01;
@@ -41,9 +40,9 @@ namespace Task1
             Metods metod = new Metods(A, k, h);
 
 
-            for (int i = 0; i < 2; i++)
+            for (int i = 0; i < 5; i++)
             {
-                x = 1 + (double)i / 100; y = 1 + (double)i / 100; t = 0;
+                x = 1 + (double)i / 10; y = 1 + (double)i / 10; t = 0;
 
                 while (t < tmax)
                 {

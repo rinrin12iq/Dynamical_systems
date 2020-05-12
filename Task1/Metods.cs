@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Windows.Forms.DataVisualization.Charting;
 
 namespace Task1
 {
@@ -42,5 +38,16 @@ namespace Task1
             y += (q1 + 2 * q2 + 2 * q3 + q4) / 6;
         }
 
+        public void chartSettings(Chart chart1)
+        {
+            chart1.ChartAreas[0].CursorX.IsUserEnabled = true;
+            chart1.ChartAreas[0].CursorX.IsUserSelectionEnabled = true;
+            chart1.ChartAreas[0].CursorY.IsUserEnabled = true;
+            chart1.ChartAreas[0].CursorY.IsUserSelectionEnabled = true;
+            chart1.ChartAreas[0].CursorX.Interval = 0.01;
+            chart1.ChartAreas[0].CursorY.Interval = 0.01;
+            chart1.ChartAreas[0].AxisX.ScrollBar.Axis.ScaleView.SmallScrollSize = 0.01;
+            chart1.ChartAreas[0].AxisY.ScrollBar.Axis.ScaleView.SmallScrollSize = 0.01;
+        }
     }
 }
