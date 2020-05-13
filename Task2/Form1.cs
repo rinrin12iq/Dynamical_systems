@@ -28,17 +28,17 @@ namespace Task2
             {
                 t = 0;
                 x = x0;
-                while (t < 25)
+                while (t < 500)
                 {
                     if (!F(A, x))
                         break;
 
-                    if (t > 24)
+                    if (t > 400)
                         chart1.Series[0].Points.AddXY(A, x);
                     
                     x = Function(x, A);
 
-                    t += 0.01;
+                    t++;
                 }
                 A += 0.01;
             }
@@ -61,7 +61,7 @@ namespace Task2
                     chart2.Series[0].Points.AddXY(x, xn);
                     x = xn;
                     chart2.Series[0].Points.AddXY(x, xn);
-                    t += 0.01;
+                    t++;
                 } 
             }
         }
