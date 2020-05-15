@@ -41,7 +41,7 @@ namespace Task3
             for (double a = a0; a <= amax; a += xscale)
             {
                 y1 = 0;
-                for (double b = b0; b <= bmax; b += yscale)
+                for (double b = bmax; b >= b0; b -= yscale)
                 {
                     x = x0; t = 0;
                     while (t <= 500)

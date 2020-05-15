@@ -23,7 +23,6 @@ namespace Task3
 
         public static void MapDrawing(Graphics map, int p, double a, double b, double xscale, double yscale)
         {
-            var bryshColor = color[p];
             map.FillRectangle(new SolidBrush(color[p]), (float)(a / (xscale)), (float)(b / (yscale)), 1, 1);
         }
 

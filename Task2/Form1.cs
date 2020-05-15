@@ -48,6 +48,8 @@ namespace Task2
         private void chart1_MouseClick(object sender, MouseEventArgs e)
         {
             chart2.Series[0].Points.Clear();
+            chart2.Series[1].Points.AddXY(-2, -2);
+            chart2.Series[1].Points.AddXY(2, 2);
             double xn, x = x0;
             var res = chart1.HitTest(e.X, e.Y);
             if (res.Series != null) {
