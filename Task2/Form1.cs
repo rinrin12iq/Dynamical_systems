@@ -44,7 +44,6 @@ namespace Task2
             }
         }
 
-
         private void chart1_MouseClick(object sender, MouseEventArgs e)
         {
             chart2.Series[0].Points.Clear();
