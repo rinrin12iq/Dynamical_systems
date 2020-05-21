@@ -48,8 +48,13 @@ namespace Task2
         private void chart1_MouseClick(object sender, MouseEventArgs e)
         {
             chart2.Series[0].Points.Clear();
+            chart2.Series[1].Points.Clear();
+            chart2.Series[2].Points.Clear();
+
             chart2.Series[1].Points.AddXY(-2, -2);
             chart2.Series[1].Points.AddXY(2, 2);
+
+
             double xn, x = x0;
             var res = chart1.HitTest(e.X, e.Y);
             if (res.Series != null) {
@@ -57,16 +62,36 @@ namespace Task2
                 t = 0;
                 tmax = double.Parse(textBox4.Text, System.Globalization.CultureInfo.InvariantCulture);
 
-                while (t < tmax)
                 {
+                    double k = -1.2;
+                    while (k < 1.2)
+                    {
+                        chart2.Series[2].Points.AddXY(k, Function(k, A));
+                        k += 0.1;
+                    }
+                }
+
+                while (t < tmax && Math.Abs(x) < 150)
+                { 
                     xn = Function(x, A);
                     chart2.Series[0].Points.AddXY(x, xn);
                     x = xn;
                     chart2.Series[0].Points.AddXY(x, xn);
                     t++;
+                    
+                    //xn = Function(x, A);
+                    //chart2.Series[0].Points.AddXY(x, x);
+                    //chart2.Series[0].Points.AddXY(xn, x);
+                    //x = xn;
+                    //xn = Function(x, A);
+                    //chart2.Series[0].Points.AddXY(x, xn);
+                    //x = xn;
+                    //t++;
                 } 
             }
-        }
+            
+        }   
+            
 
         static double Function(double x, double A) => A * (x - x * x * x);
         static bool F(double x, double y) //Придумать название

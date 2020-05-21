@@ -79,19 +79,42 @@ namespace Task3
         private void pictureBox1_MouseClick(object sender, MouseEventArgs e)
         {
             chart1.Series[0].Points.Clear();
-            
+            chart1.Series[1].Points.Clear();
+            chart1.Series[2].Points.Clear();
+
             double a, b, x, xn;
             a = e.X *(amax - a0)/pictureBox1.Width + a0;
             b = e.Y * (bmax - b0) / pictureBox1.Height + b0;
-            xn = x = x0;
+
+            {
+                chart1.Series[1].Points.AddXY(-2, -2);
+                chart1.Series[1].Points.AddXY(2, 2);
+
+                double k = -1.5;
+                while (k < 1.5)
+                {
+                    chart1.Series[2].Points.AddXY(k, Function(k, a, b));
+                    k += 0.1;
+                }
+            }
+
+            x = x0;
             for (int i = 0; i < 25; i++)
             {
-                if (Math.Abs(x) <= 10e5)
+                if (Math.Abs(x) <= 10e5 && Math.Abs(x) < 150)
                 {
                     xn = Function(x, a, b);
                     chart1.Series[0].Points.AddXY(x, xn);
                     x = xn;
                     chart1.Series[0].Points.AddXY(x, xn);
+
+                    //xn = Function(x, a, b);
+                    //chart1.Series[0].Points.AddXY(x, x);
+                    //chart1.Series[0].Points.AddXY(xn, x);
+                    //x = xn;
+                    //xn = Function(x, a, b);
+                    //chart1.Series[0].Points.AddXY(x, xn);
+                    //x = xn;
                 }
             }
         }
