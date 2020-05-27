@@ -24,35 +24,36 @@ namespace Task1
             chart1.Series[0].Points.Clear();
             chart1.Series[1].Points.Clear();
             chart1.Series[2].Points.Clear();
-            chart1.Series[3].Points.Clear();
-            chart1.Series[4].Points.Clear();
             textBox4.BackColor = default;
 
             double A, k, h = 0.01;
             double t = 0, tmax;
-            double x = 0.1, y = 0.1, z = 0.1;
+            double x = 1, y = 1;
             double N = 100000000000;
             A = double.Parse(textBox1.Text, System.Globalization.CultureInfo.InvariantCulture);
             k = double.Parse(textBox2.Text, System.Globalization.CultureInfo.InvariantCulture);
             tmax = double.Parse(textBox3.Text, System.Globalization.CultureInfo.InvariantCulture);
-            
-            Metods metod = new Metods(A, k, h);
+
+            Metods metod = new Metods(A, k, h, x, y);
 
 
-            while (t < tmax)
+            for (int i = 0; i < 3; i++)
             {
-                if (!(x < N && y < N && x > -N && y > -N))
+                x = 1 + (double)i / 10; y = 1 + (double)i / 10; t = 0;
+
+                while (t < tmax)
                 {
-                    textBox4.BackColor = Color.Red;
-                    break;
+                    if ((x < N && y < N && x > -N && y > -N))
+                    {
+                        metod.RungeKutta(x, y);
+                        chart1.Series[i].Points.AddXY(x, y);
+                        x = metod.x;
+                        y = metod.y;
+                        t += h;
+                    }
+                    else
+                        break;
                 }
-
-
-                chart1.Series[0].Points.AddXY(x, y);
-                metod.RungeKutta(x, y);
-                x = metod.x;
-                y = metod.y;
-                t += h;
             }
         }
     }

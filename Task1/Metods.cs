@@ -9,11 +9,13 @@ namespace Task1
 
         private Metods() { }
 
-        public Metods(double A, double k, double h)
+        public Metods(double A, double k, double h, double x, double y)
         {
             this.A = A;
             this.k = k;
             this.h = h;
+            this.x = x;
+            this.y = y;
         }
 
         #region  Avtogen
@@ -40,6 +42,11 @@ namespace Task1
             this.y += (q1 + 2 * q2 + 2 * q3 + q4) / 6;
         }
         #endregion Avtogen
+
+
+
+
+
 
         private double h1(double x)
         {
