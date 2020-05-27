@@ -29,13 +29,9 @@ namespace Task4
             while (m1 < mmax)
             {
                 b = - m1 * 2 / 3;
-                if ((m1 * (1 + b * m1 - m1 * m1)) > 0 && m1 > 0)
+                if ((m1 * (1 + b * m1 - m1 * m1)) > 0)
                 {
                     chart1.Series[0].Points.AddXY(m1, b);
-                }
-                else if ((m1 * (1 + b * m1 - m1 * m1)) > 0)
-                {
-                    chart1.Series[3].Points.AddXY(m1, b);
                 }
 
                 m1 += 0.1;
