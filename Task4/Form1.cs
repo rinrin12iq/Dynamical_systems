@@ -1,12 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Globalization;
 
 namespace Task4
 {
@@ -19,7 +13,7 @@ namespace Task4
 
         private void button1_Click(object sender, EventArgs e)
         {
-            double m, mmax, m1, m2, b, bmax;
+            double m, mmax, m1, m2, b;
 
             chart1.Series[0].Points.Clear();
             chart1.Series[1].Points.Clear();
@@ -27,19 +21,21 @@ namespace Task4
 
 
 
-            m = double.Parse(textBox1.Text);
-            mmax = double.Parse(textBox2.Text);
-            //b = double.Parse(textBox3.Text);
-            //bmax = double.Parse(textBox4.Text);
+            m = double.Parse(textBox1.Text, CultureInfo.InvariantCulture);
+            mmax = double.Parse(textBox2.Text, CultureInfo.InvariantCulture);
 
             m1 = m2 = m;
 
             while (m1 < mmax)
             {
-                b = -m1 * 2 / 3;
-                if ((m1 * (1 + b * m1 - m1 * m1)) > 0)
+                b = - m1 * 2 / 3;
+                if ((m1 * (1 + b * m1 - m1 * m1)) > 0 && m1 > 0)
                 {
                     chart1.Series[0].Points.AddXY(m1, b);
+                }
+                else if ((m1 * (1 + b * m1 - m1 * m1)) > 0)
+                {
+                    chart1.Series[3].Points.AddXY(m1, b);
                 }
 
                 m1 += 0.1;
@@ -48,7 +44,7 @@ namespace Task4
             while (m2 < mmax)
             {
                 b = m2 - 1 / m2;
-                if (Math.Abs(-3 * b * m - 2 * m * m) > 1e-5 && Math.Abs(b) < 20)
+                if (Math.Abs(-3 * b * m - 2 * m * m) > 1e-10 && Math.Abs(b) < 100)
                 {
                     if (m2 < 0)
                         chart1.Series[1].Points.AddXY(m2, b);
@@ -56,7 +52,7 @@ namespace Task4
                         chart1.Series[2].Points.AddXY(m2, b);
                 }
 
-                m2 += 0.1;
+                m2 += 0.05;
             }
         }
 
@@ -66,10 +62,6 @@ namespace Task4
 
             double m, b;
 
-
-            //var res = chart1.HitTest(e.X, e.Y);
-            //if (res.Series != null)
-            //{
             double x = 0.01, y = 0.01;
             double t = 0, tmax = 100;
 
@@ -78,21 +70,16 @@ namespace Task4
             m = res.Item1;
             b = res.Item2; 
 
-            //m = res.Series.Points[res.PointIndex].XValue;
-            //b = res.Series.Points[res.PointIndex].YValues.First();
-
             while (t < tmax)
             {
                 if (Math.Abs(x) < 1e10 || Math.Abs(y) < 1e10)
                 {
                     chart2.Series[0].Points.AddXY(x, y);
                     Runge.RungeKutta(ref x, ref y, m, b);
+                    textBox3.Text = $"m = {m}; \nb = {b}";
                 }
                 t += 0.01;
             }
-            // }
-
-           
         }
         private Tuple<double, double> GetAxisValuesFromMouse(int x, int y)
         {

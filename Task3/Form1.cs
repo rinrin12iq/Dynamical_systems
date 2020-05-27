@@ -1,11 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Task3
@@ -94,7 +88,7 @@ namespace Task3
                 while (k < 1.5)
                 {
                     chart1.Series[2].Points.AddXY(k, Function(k, a, b));
-                    k += 0.1;
+                    k += 0.01;
                 }
             }
 

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Drawing;
 using System.Windows.Forms;
-using System.Windows.Forms.DataVisualization.Charting;
 
 namespace Task1
 {
@@ -31,7 +30,7 @@ namespace Task1
 
             double A, k, h = 0.01;
             double t = 0, tmax;
-            double x = 1, y = 1;
+            double x = 0.1, y = 0.1, z = 0.1;
             double N = 100000000000;
             A = double.Parse(textBox1.Text, System.Globalization.CultureInfo.InvariantCulture);
             k = double.Parse(textBox2.Text, System.Globalization.CultureInfo.InvariantCulture);
@@ -40,22 +39,20 @@ namespace Task1
             Metods metod = new Metods(A, k, h);
 
 
-            for (int i = 0; i < 5; i++)
+            while (t < tmax)
             {
-                x = 1 + (double)i / 10; y = 1 + (double)i / 10; t = 0;
-
-                while (t < tmax)
+                if (!(x < N && y < N && x > -N && y > -N))
                 {
-                    if (!(x < N && y < N && x > -N && y > -N))
-                    {
-                        textBox4.BackColor = Color.Red;
-                        break;
-                    }
-
-                    chart1.Series[i].Points.AddXY(x, y);
-                    metod.RungeKutta(ref x, ref y);
-                    t += h;
+                    textBox4.BackColor = Color.Red;
+                    break;
                 }
+
+
+                chart1.Series[0].Points.AddXY(x, y);
+                metod.RungeKutta(x, y);
+                x = metod.x;
+                y = metod.y;
+                t += h;
             }
         }
     }

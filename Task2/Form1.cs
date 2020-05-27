@@ -40,7 +40,7 @@ namespace Task2
 
                     t++;
                 }
-                A += 0.01;
+                A += 0.005;
             }
         }
 
@@ -66,7 +66,7 @@ namespace Task2
                     while (k < 1.2)
                     {
                         chart2.Series[2].Points.AddXY(k, Function(k, A));
-                        k += 0.1;
+                        k += 0.01;
                     }
                 }
 
